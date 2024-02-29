@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { IonButton, IonButtons,IonCard, IonCardTitle, IonContent, IonCol, IonGrid, IonHeader, IonInput, IonModal, IonRow, IonSearchbar, alertController  } from '@ionic/vue';
+import { IonButton, IonButtons,IonCard, IonCardTitle, IonContent, IonCol, IonGrid, IonHeader, IonInput, IonModal, IonPage, IonRow, IonSearchbar, IonTitle, IonToolbar, alertController  } from '@ionic/vue';
 import {defineComponent, ref, watch, computed} from 'vue';
 
 interface User{
@@ -74,8 +74,11 @@ export default defineComponent({
     IonHeader,
     IonInput,
     IonModal,
+    IonPage,
     IonRow,
-    IonSearchbar
+    IonSearchbar,
+    IonTitle,
+    IonToolbar
   },
   setup(){
     const showCreateModalState = ref(false);
@@ -83,7 +86,7 @@ export default defineComponent({
     const lastName = ref('');
     const mobileNumber =ref('');
     const location = ref('');
-    const users = ref<User[]>([]);
+    const users = ref<User[]>(JSON.parse(localStorage.getItem('users')|| '[]'));
     const searchQuery = ref('');
     
     watch(searchQuery,(newValue) => {
