@@ -10,7 +10,7 @@
     </ion-header>
 
     <ion-content>
-     <ion-searchbar v-modal="searchQuery" placeholder="Search"></ion-searchbar>
+     <ion-searchbar v-model="searchQuery" placeholder="Search"></ion-searchbar>
      <ion-card v-for="(user,index) in filteredUsers" :key="index">
       <ion-card-title>
         <ion-grid>
@@ -86,7 +86,7 @@ export default defineComponent({
     const lastName = ref('');
     const mobileNumber =ref('');
     const location = ref('');
-    const users = ref<User[]>(JSON.parse(localStorage.getItem('users')|| '[]'));
+    const users = ref<User[]>([]);
     const searchQuery = ref('');
     
     watch(searchQuery,(newValue) => {
@@ -121,6 +121,8 @@ export default defineComponent({
         location: location.value
       };
       users.value.push(newUser);
+      localStorage.setItem('users',JSON.stringify(users.value));
+      clearInputFields()
       closeModal();
     };
 
