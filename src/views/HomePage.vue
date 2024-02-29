@@ -122,7 +122,7 @@ export default defineComponent({
       };
       users.value.push(newUser);
       localStorage.setItem('users',JSON.stringify(users.value));
-      clearInputFields();
+      clearInputFields()
       closeModal();
     };
 
